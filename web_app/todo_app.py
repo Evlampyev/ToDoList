@@ -1,6 +1,5 @@
 from pywebio.input import input, TEXT
 from pywebio.output import put_button, put_table, clear, use_scope
-
 import logging
 
 from database import my_list as myl, select_tasks, create_tasks_table

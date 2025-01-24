@@ -4,11 +4,9 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import API_ID, API_HASH, BOT_TOKEN
-from keyboards import main_keyboard, setting_keyboard
+from keyboards import main_keyboard, setting_keyboard, web_keyboard_inline
 from buttons import help_button, back_button, new_task_button
 from custom_filters import button_filter
-
-from web_app import todo_app
 
 basicConfig(level=INFO, format="%(asctime)s : %(levelname)s : %(message)s")
 logger = getLogger(__name__)
@@ -42,8 +40,8 @@ async def help_command(client: Client, message: Message):
 @bot.on_message(filters=filters.command('task') | button_filter(new_task_button))
 async def new_task(client: Client, message: Message):
     logger.info(f"Функция ' new_task' вызвана пользователем {message.from_user.id}")
-    # connection = todo_app.create_connection('my_tasks.sqlite')
-    todo_app.run_process()
+    await message.reply(f"Открыть web приложение", reply_markup=web_keyboard_inline)
+
 
 @bot.on_message()
 async def unknown_message(client: Client, message: Message):

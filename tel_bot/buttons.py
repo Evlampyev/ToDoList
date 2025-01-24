@@ -6,8 +6,10 @@ from pyrogram import emoji
 
 back_button = KeyboardButton(f'{emoji.BACK_ARROW} Назад')
 help_button = KeyboardButton(f'{emoji.WHITE_QUESTION_MARK} Помощь')
-new_task_button = KeyboardButton(f'{emoji.FOUNTAIN_PEN} Добавить задачу')
-tasks_button = KeyboardButton(f'{emoji.NEWSPAPER} Список задач')
+new_task_button = KeyboardButton(f'{emoji.FOUNTAIN_PEN} Редактировать мои задачи')
+
+
+
 web_app_address = WebAppInfo(url='https://yandex.ru/all')
-web_app_button = InlineKeyboardButton(f'{emoji.SPIDER_WEB} Переход на веб-приложение',
+web_app_button = InlineKeyboardButton(f'{emoji.SPIDER_WEB} Переход в веб-приложение',
                                       web_app=web_app_address)
