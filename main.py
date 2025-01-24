@@ -8,6 +8,8 @@ from keyboards import main_keyboard, setting_keyboard
 from buttons import help_button, back_button, new_task_button
 from custom_filters import button_filter
 
+from web_app import todo_app
+
 basicConfig(level=INFO, format="%(asctime)s : %(levelname)s : %(message)s")
 logger = getLogger(__name__)
 
@@ -36,6 +38,12 @@ async def help_command(client: Client, message: Message):
         text_commands += f"/{command.command} - {command.description} \n"
     await message.reply(text_commands, reply_markup=setting_keyboard)
 
+
+@bot.on_message(filters=filters.command('task') | button_filter(new_task_button))
+async def new_task(client: Client, message: Message):
+    logger.info(f"Функция ' new_task' вызвана пользователем {message.from_user.id}")
+    # connection = todo_app.create_connection('my_tasks.sqlite')
+    todo_app.run_process()
 
 @bot.on_message()
 async def unknown_message(client: Client, message: Message):

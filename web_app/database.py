@@ -1,26 +1,21 @@
-import mysql.connector
-from mysql.connector import Error
+import sqlite3
+from sqlite3 import Error
 
-list = []
+my_list = []
 create_tasks_table = """
 CREATE TABLE IF NOT EXISTS tasks (
-  id INT, 
-  description TEXT 
-) ENGINE = InnoDB
-"""
+      id INT PRIMARY KEY,
+      description TEXT
+      );
+        """
 select_tasks = "SELECT * FROM tasks"
 
 
-def create_connection(host_name, user_name, user_password, db_name):
+def create_connection(db_name):
     connection = None
     try:
-        connection = mysql.connector.connect(
-            host=host_name,
-            user=user_name,
-            passwd=user_password,
-            database=db_name
-        )
-        print("Connection successful")
+        connection = sqlite3.connect(db_name, check_same_thread=False)
+        print("Connection to SQLite DB successful")
     except Error as e:
         print(f"The error '{e}' occurred")
 
