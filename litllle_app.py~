@@ -1,0 +1,12 @@
+from pyrogram import Client, filters
+
+app = Client(bot_token='7419538530:AAE_RMOtdqooJkpOIvnAnIsiKtJaT4zN1xM',
+             name='GS_tg_bot_',)
+
+
+@app.on_message(filters.private)
+async def hello(client, message):
+    await message.reply_text(f"Hello {message.from_user.mention}")
+
+
+app.run()

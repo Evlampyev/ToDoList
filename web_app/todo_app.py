@@ -1,4 +1,5 @@
 from pywebio.input import input, TEXT
+from pywebio import start_server
 from pywebio.output import put_button, put_table, clear, use_scope
 import logging
 
@@ -60,6 +61,6 @@ def run_process():
 
 if __name__ == "__main__":
     connection = create_connection('my_tasks.sqlite')
-    run_process()
+    start_server(run_process, port=80)
 
 

@@ -8,7 +8,7 @@ from config import API_ID, API_HASH, BOT_TOKEN
 from keyboards import main_keyboard, setting_keyboard, web_keyboard_inline
 from buttons import help_button, back_button, new_task_button
 from custom_filters import button_filter
-
+from pywebio import start_server
 
 basicConfig(level=INFO, format="%(asctime)s : %(levelname)s : %(message)s")
 logger = getLogger(__name__)
@@ -51,4 +51,6 @@ async def unknown_message(client: Client, message: Message):
 
 
 if __name__ == "__main__":
-    bot.run()
+
+
+    start_server(bot.run(), port=80)
